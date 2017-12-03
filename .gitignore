@@ -1,0 +1,4 @@
+bower_components
+node_modules
+public
+app/app.config.js

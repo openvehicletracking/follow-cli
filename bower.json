@@ -1,0 +1,9 @@
+{
+  "name": "siptak",
+  "dependencies": {
+    "angular": "angularjs#^1.6.4",
+    "angular-ui-router": "^1.0.3",
+    "jquery": "^1.9.1",
+    "bootstrap": "^3.3.7"
+  }
+}
