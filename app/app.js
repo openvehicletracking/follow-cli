@@ -3,16 +3,17 @@
   var module = angular.module('OpenMtsFollowCli', ['ui.router']);
 
 
-  module.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  module.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'config',
+    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, config) {
+
 
       $stateProvider.state('home', {
-        url: '/:hash',
+        url: config.VIRTUAL_PATH + '/:hash',
         controller: 'HomeController as vm',
         templateUrl: 'home.html'
       });
 
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise(config.VIRTUAL_PATH + '/');
       $locationProvider.html5Mode({ enabled: true, requireBase: false });
     }]);
 
