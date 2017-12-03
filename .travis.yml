@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - "6"
+
+services:
+  - docker
+
+cache:
+  directories:
+    - "node_modules"
+    - "bower_components"
+
+before_install:
+  - npm install bower -g
+  - npm install
+  - bower install
+
+
+script: gulp build
+
+after_success:
+  - docker build -t openvehicletracking/followcli .;
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push openvehicletracking/followcli;
