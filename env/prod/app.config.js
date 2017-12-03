@@ -10,4 +10,4 @@
 
   angular.module('OpenMtsFollowCli').constant("config", config);
 //prod
-}).call(this);g
+}).call(this);
