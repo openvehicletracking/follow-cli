@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var rename = require("gulp-rename");
 
 var browserSync = require('browser-sync').create();
 var env = process.env.ENV || 'local';
