@@ -1,7 +1,7 @@
 {
-  "name": "siptak",
+  "name": "follow-cli",
   "version": "1.0.0",
-  "description": "siparis takip client",
+  "description": "follow cli",
   "main": "gulpfile.js",
   "scripts": {
     "test": ""
