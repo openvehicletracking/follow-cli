@@ -6,8 +6,18 @@
   homeControllerFn.$inject = ['$stateParams', 'homeService', '$interval', '$rootScope', 'config'];
 
   function homeControllerFn($stateParams, homeService, $interval, $rootScope, config) {
+    var vm = this;
     var intervalId;
     var zoom = 18;
+    vm.mapOptions = {};
+
+    if (config.PLACE) {
+      vm.mapOptions.home = config.PLACE;
+    }
+
+    if (config.MAPS_STYLE) {
+      vm.mapOptions.style = config.MAPS_STYLE;
+    }
 
     function locationSuccess(state) {
       var mapData = {

@@ -33,6 +33,7 @@
 
         var mapW = document.getElementById(controller.mapId);
         scope.vm.map = new google.maps.Map(mapW, opts);
+        scope.$broadcast('mapReady', scope.vm.map);
         if (responsive.autoWidthHeight) {
           autoWidthHeight(element, responsive, scope.vm.map);
         }
@@ -69,7 +70,7 @@
       $window._onGoogleMapsJsLoad = callback;
 
       var script = document.createElement("script");
-      script.src = 'https://maps.googleapis.com/maps/api/js?key='+ config.MAPS_API_KEY +'&callback=_onGoogleMapsJsLoad';
+      script.src = 'https://maps.googleapis.com/maps/api/js?key='+ config.MAPS_API_KEY +'&callback=_onGoogleMapsJsLoad&libraries=places';
       script.id = 'googleMapsJs';
       script.async = true;
       script.defer = true;

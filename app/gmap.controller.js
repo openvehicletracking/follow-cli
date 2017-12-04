@@ -93,6 +93,47 @@
       }
     }
 
+    function addHomeMarker(e, map) {
+      if (angular.isUndefined(vm.options.home)) {
+        return;
+      }
+
+      if (angular.isDefined(vm.options.home.placeId)) {
+        createrMarkerByPlaceId()
+      }
+
+      function createrMarkerByPlaceId() {
+        var placeService = new google.maps.places.PlacesService(map);
+        placeService.getDetails({ placeId: vm.options.home.placeId }, function (place, status) {
+          // place found
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var icon = vm.options.home.icon;
+            var marker = new google.maps.Marker({
+              map: map,
+              position: place.geometry.location,
+              icon: {
+                url: icon.url,
+                scaledSize: new google.maps.Size(icon.w, icon.h),
+              }
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+              map.setZoom(18);
+              map.panTo(place.geometry.location);
+            });
+
+          }
+        });
+      }
+    }
+
+    function updateStyle(e, map) {
+      if (!angular.isArray(vm.options.style)) {
+        return;
+      }
+      map.setOptions({styles: vm.options.style});
+    }
+
     function init() {
       if (angular.isUndefined(vm.center) || angular.isUndefined(vm.center.lat) || angular.isUndefined(vm.center.lng)) {
         vm.center = { lat: 39.0407786,  lng: 35.8698383 }
@@ -108,6 +149,9 @@
       }
 
       $scope.$on('lat-lng-change', onLatLngChange);
+
+      $scope.$on('mapReady', addHomeMarker);
+      $scope.$on('mapReady', updateStyle);
 
       /**
        * when map is ready, send collected events to onLatLngChange

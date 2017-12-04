@@ -2,9 +2,9 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 
 var browserSync = require('browser-sync').create();
-var env = process.env.ENV || 'local';
+var profile = process.env.PROFILE || 'local';
 
-var configFile = './env/' + env + '/app.config.js';
+var appProfilePath = './profile/' + profile ;
 
 var vendorJS = [
   'bower_components/jquery/dist/jquery.min.js',
@@ -35,12 +35,12 @@ gulp.task('bootstrapFonts', function () {
     .pipe(gulp.dest('./public/fonts'))
 });
 
-gulp.task('copyConf', function () {
-  return gulp.src(configFile)
+gulp.task('copyProfile', function () {
+  return gulp.src(appProfilePath + '/**/*.*')
     .pipe(gulp.dest('./app'));
 });
 
-gulp.task('copy', ['copyConf'], function () {
+gulp.task('copy', ['copyProfile'], function () {
   return gulp.src(['./app/**/*.*', './index.html'])
     .pipe(gulp.dest('./public'));
 
