@@ -117,10 +117,10 @@
               }
             });
 
-            google.maps.event.addListener(marker, 'click', function () {
-              map.setZoom(18);
-              map.panTo(place.geometry.location);
-            });
+            // google.maps.event.addListener(marker, 'click', function () {
+            //   map.setZoom(18);
+            //   map.panTo(place.geometry.location);
+            // });
 
           }
         });
