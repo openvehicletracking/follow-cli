@@ -12,7 +12,8 @@
     };
 
     function getState(hash, successFn, failFn) {
-      $http.get(config.API_URL + '/f/' + hash).then(function (response) {
+      var t = new Date().getTime();
+      $http.get(config.API_URL + '/f/' + hash + '?time=' + t).then(function (response) {
         successFn(response.data);
       }, function (errResponse) {
         $log.error(errResponse);
